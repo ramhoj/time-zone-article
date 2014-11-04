@@ -82,25 +82,6 @@ All the above is something that your tests should catch for you. The problem is 
 
 Highgroove just released [Zonebie](https://github.com/highgroove/zonebie), a gem that helps you deal with this. I haven't had time to try it out myself yet, but it looks very promising. If you find this to be overkill, at least make sure that your tests run with `Time.zone` set to another time zone than the one your development machine is in!
 
-## Bug in Time.zone.parse
-
-Jarkko Laine ([@jarkko](https://twitter.com/#!/jarkko)) pointed out that there's currently a bug in Rails that can have `Time.zone.parse` lose an hour when your system time is in DST (daylight saving time) and your configured time zone isn't. Jarkko has posted an [issue](https://github.com/rails/rails/issues/5559) on Rails' issue tracker and written a [patch](https://github.com/jarkko/rails/commit/bb4a1d68f6db8bf99d2b6e21eee72a19d494dee0) to correct the bug. Until the patch has been accepted or if you're running with older versions of Rails the only safe way to avoid this bug is to either monkey patch Rails in your app with Jarkko's fix or use:
-
-    # use
-    ActiveSupport::TimeWithZone.new(nil, Time.zone, DateTime.parse("2012-03-25 03:29"))
-    # => Sun, 25 Mar 2012 03:29:00 PDT -07:00
-
-    # or if possible pass the time zone in the string
-    Time.zone.parse("2012-03-25 03:29 PDT")
-    # => Sun, 25 Mar 2012 03:29:00 PDT -07:00
-
-    # instead of
-    Time.zone.parse("2012-03-25 03:29")
-    # => Sun, 25 Mar 2012 04:29:00 PDT -07:00
-
-It should however be mentioned that it's pretty rare that this bug surfaces and when it does it can only lose you one hour. If you can live with that you probably do best by just waiting for the patch to be accepted.
-
-
 ## Cheat Sheet
 
 ### DOs
