@@ -118,7 +118,7 @@ This article was first written in March 2012. Back then Rails 3.2 was the new ho
 * Last verified Rails version: **4.1.7**
 * Last verified Ruby version: **2.1.4p265**
 
-There is a git repository which you can clone:
+There is a [git repository](https://github.com/ramhoj/time-zone-article) which you can clone:
 
     git clone git@github.com:ramhoj/time-zone-article.git
     cd time-zone-article
@@ -133,4 +133,4 @@ aims to help with this too.
 
 ### Changelog
 
-See the git repository's commits.
+See the [git repository's commits](https://github.com/ramhoj/time-zone-article/commits/master).
