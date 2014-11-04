@@ -30,7 +30,7 @@ Time has date information but `Date` does NOT have time information. Even if you
 But let's say you're stuck with a Date that you need to treat as a Time, at least make sure to convert it to your configured time zone:
 
     1.day.from_now # => Fri, 03 Mar 2012 22:04:47 JST +09:00
-    Date.today.to_time_in_current_zone # => Fri, 02 Mar 2012 00:00:00 JST +09:00
+    Date.today.in_time_zone # => Fri, 02 Mar 2012 00:00:00 JST +09:00
 
 Never use:
 
@@ -58,9 +58,11 @@ Read more about why iso8601 is advisable here: [http://devblog.avdi.org/2009/10/
 
 When you get the time information from an external API which you don't have control over you simply need to figure out the format and time zone it's sent to you with. Because Time.zone.parse might not work with the format you receive you might need to use:
 
-    Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z').in_time_zone(Time.zone)
+    Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z").in_time_zone
 
-Why there's no #strptime method on Time.zone when there's a #parse beats me. **However don't forget to call in_time_zone(Time.zone) on your result!**
+This assumes time_string a iso8601 formated string. `strptime` will throw a very unintuitive error complaining on the format argument when in reality the problem is that the time string's format mismatches the format template argument. `in_time_zone` defaults to use the Rails configured time zone.
+
+Why there's no `strptime` method on `Time.zone` when there's a `parse` beats me.
 
 ## Working with multiple user time zones
 
@@ -105,14 +107,14 @@ It should however be mentioned that it's pretty rare that this bug surfaces and 
 
     2.hours.ago # => Fri, 02 Mar 2012 20:04:47 JST +09:00
     1.day.from_now # => Fri, 03 Mar 2012 22:04:47 JST +09:00
-    Date.today.to_time_in_current_zone # => Fri, 02 Mar 2012 22:04:47 JST +09:00
+    Date.today.in_time_zone # => Fri, 02 Mar 2012 22:04:47 JST +09:00
     Date.current # => Fri, 02 Mar
     Time.zone.parse("2012-03-02 16:05:37") # => Fri, 02 Mar 2012 16:05:37 JST +09:00
     Time.zone.now # => Fri, 02 Mar 2012 22:04:47 JST +09:00
     Time.current # Same thing but shorter. (Thank you Lukas Sarnacki pointing this out.)
     Time.zone.today # If you really can't have a Time or DateTime for some reason
-    Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z').in_time_zone(Time.zone) # If you can't use Time#parse
     Time.current.utc.iso8601 # When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed)
+    Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z").in_time_zone # If you can't use time.zone.parse
 
 ### DON'Ts
 
