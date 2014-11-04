@@ -40,9 +40,9 @@ Never use:
 
 Since Rails know that your time information is stored as UTC in the database it will convert any time you give it to UTC.
 
-    Post.where(["posts.publised_at > ?", Time.zone.now])
+    Post.where(["posts.publised_at > ?", Time.current])
 
-Just be sure to never construct the query string by hand and always use Time.zone.now as the base and you should be safe.
+Just be sure to never construct the query string by hand and always use Time.current as the base and you should be safe.
 
 ## Working with APIs
 
@@ -50,7 +50,7 @@ Just be sure to never construct the query string by hand and always use Time.zon
 
 Building a web API for others to consume? Make sure to always send all time data as UTC (and specify that this is the case).
 
-    Time.zone.now.utc.iso8601 #=> "2012-03-16T14:55:33Z"
+    Time.current.utc.iso8601 #=> "2012-03-16T14:55:33Z"
 
 Read more about why iso8601 is advisable here: [http://devblog.avdi.org/2009/10/25/iso8601-dates-in-ruby/](http://devblog.avdi.org/2009/10/25/iso8601-dates-in-ruby/)
 
@@ -111,8 +111,8 @@ It should however be mentioned that it's pretty rare that this bug surfaces and 
     Time.zone.now # => Fri, 02 Mar 2012 22:04:47 JST +09:00
     Time.current # Same thing but shorter. (Thank you Lukas Sarnacki pointing this out.)
     Time.zone.today # If you really can't have a Time or DateTime for some reason
-    Time.zone.now.utc.iso8601 # When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed)
     Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z').in_time_zone(Time.zone) # If you can't use Time#parse
+    Time.current.utc.iso8601 # When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed)
 
 ### DON'Ts
 
