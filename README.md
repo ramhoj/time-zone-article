@@ -80,7 +80,7 @@ This will do the same thing as `config.time_zone` but on a per request basis. I 
 
 All the above is something that your tests should catch for you. The problem is that you as the user and your computer as the development server happen to reside in the same time zone. This is rarely the case once you push things to production.
 
-Highgroove just released [Zonebie](https://github.com/highgroove/zonebie), a gem that helps you deal with this. I haven't had time to try it out myself yet, but it looks very promising. If you find this to be overkill, at least make sure that your tests run with `Time.zone` set to another time zone than the one your development machine is in!
+There is [Zonebie](https://github.com/alindeman/zonebie), a gem that helps you deal with this. I haven't had time to try it out myself yet, but it looks promising. If you find this to be overkill, at least make sure that your tests run with `Time.zone` set to another time zone than the one your development machine is in!
 
 ## Cheat Sheet
 
