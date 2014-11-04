@@ -4,7 +4,7 @@ The one that probably has tricked me the most times is the fact that Rails fools
 
 ## Configure your Rails app
 
-So what tools do we have at our disposal as Rails developers? The most important one is the `config.time_zone` configuration in your config/application.rb file. ActiveRecord will help you convert from and to (which the documentation fails to explain) UTC and the time zone of your choice. This means that if all you're doing is having users post times through a form and use Active Record to persist it you're good to go.
+So what tools do we have at our disposal as Rails developers? The most important one is the `config.time_zone` configuration in your `config/application.rb` file. ActiveRecord will help you convert from and to (which the documentation fails to explain) UTC and the time zone of your choice. This means that if all you're doing is having users post times through a form and use Active Record to persist it you're good to go.
 
 ## Processing time information
 
@@ -25,7 +25,7 @@ ActiveRecord fetches the UTC time from the database and converts it to the time 
 
 ### Date vs Time
 
-Time has date information but Date does NOT have time information. Even if you don't think you care you might realize that you do sooner then later. Be safe and use Time (or DateTime if you need support for times very far from the present).
+Time has date information but `Date` does NOT have time information. Even if you don't think you care you might realize that you do sooner then later. Be safe and use `Time` (or `DateTime` if you need support for times very far from the present).
 
 But let's say you're stuck with a Date that you need to treat as a Time, at least make sure to convert it to your configured time zone:
 
@@ -118,7 +118,7 @@ It should however be mentioned that it's pretty rare that this bug surfaces and 
 
     Time.now # => Returns system time and ignores your configured time zone.
     Time.parse("2012-03-02 16:05:37") # => Will assume time string given is in the system's time zone.
-    Time.strptime(time_string, '%Y-%m-%dT%H:%M:%S%z') # Same problem as with Time#parse.
+    Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z") # Same problem as with Time#parse.
     Date.today # This could be yesterday or tomorrow depending on the machine's time zone.
     Date.today.to_time # => # Still not the configured time zone.
 
