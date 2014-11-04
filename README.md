@@ -127,3 +127,29 @@ It should however be mentioned that it's pretty rare that this bug surfaces and 
 ## Epilogue
 
 I hope you've learned something from this post. I sure did while writing it! If you have any feedback on how it can be improved, or if you spot any errors, please let me know by posting a comment below!
+
+## Ruby and Rails version
+
+This article was first written in March 2012. Back then Rails 3.2 was the new hot and as you all know a lot happens in Rails-land in two and a half years and will continue to do so. I will do my best to keep the article accurate and up to date with the latest versions of Rails. If you spot anything that is reported deprecated or not working please let me know in the comment section below!
+
+* Article publish date: **2012-03-20**
+* Article last updated: **2014-11-04**
+* Last verified Rails version: **4.1.7**
+* Last verified Ruby version: **2.1.4p265**
+
+There is a git repository which you can clone:
+
+    git clone git@github.com:ramhoj/time-zone-article.git
+    cd time-zone-article
+    bundle install
+    rake db:create:all db:migrate db:test:prepare
+    rspec spec/
+
+The Rails application is running on the version defined above and has been verified to work under the described Ruby version above.
+If you want to make sure things are working in the version of Rails or Ruby that you're using please fork the repository and make
+the necessary adjustments and run the test suite. If you want more in-debt, hands-on of the examples this repository's test suite
+aims to help with this too.
+
+### Changelog
+
+See the git repository's commits.
