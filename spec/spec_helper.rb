@@ -18,6 +18,12 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.before do |scenario|
+    strategy = (scenario.metadata[:type] == :request || scenario.metadata[:truncation] ? :truncation : :transaction)
+    DatabaseCleaner.strategy = strategy
+    DatabaseCleaner.start
+  end
+
   config.around(:each, frozen: /.+/) do |scenario|
     frozen_at = scenario.metadata[:frozen]
 
@@ -43,6 +49,7 @@ RSpec.configure do |config|
   end
 
   config.after do
+    DatabaseCleaner.clean
     Timecop.return
   end
 end

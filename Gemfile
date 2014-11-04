@@ -9,4 +9,5 @@ gem "pry-doc"
 group :development, :test do
   gem "rspec-rails"
   gem "timecop"
+  gem "database_cleaner"
 end
