@@ -40,7 +40,7 @@ Never use:
 
 Since Rails know that your time information is stored as UTC in the database it will convert any time you give it to UTC.
 
-    Post.where(["posts.publised_at > ?", Time.current])
+    Post.where(["posts.published_at > ?", Time.current])
 
 Just be sure to never construct the query string by hand and always use Time.current as the base and you should be safe.
 
