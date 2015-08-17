@@ -74,11 +74,19 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
   describe Date do
     describe "#in_time_zone" do
       it "returns the date as a time in the current time zone" do
-        expect(Date.today.in_time_zone.iso8601).to eq("2014-03-15T00:00:00+04:30")
+        expect(Date.current.in_time_zone.iso8601).to eq("2014-03-15T00:00:00+04:30")
       end
 
       it "can return the date as a time in in a given time zone" do
-        expect(Date.today.in_time_zone("Adelaide").iso8601).to eq("2014-03-15T00:00:00+10:30")
+        expect(Date.current.in_time_zone("Adelaide").iso8601).to eq("2014-03-15T00:00:00+10:30")
+      end
+
+      it "returns the correct date in a configured time zone which is before UTC", frozen: "2015-08-17T22:00:00Z" do
+        expect(Date.current.to_s).to eq("2015-08-18")
+      end
+
+      it "returns the correct date in a time zone which is before UTC", frozen: "2015-08-17T22:00:00Z" do
+        expect(Date.current.in_time_zone("Australia/Sydney").to_date.to_s).to eq("2015-08-18")
       end
     end
   end

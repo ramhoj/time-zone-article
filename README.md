@@ -30,7 +30,7 @@ Time has date information but `Date` does NOT have time information. Even if you
 But let's say you're stuck with a Date that you need to treat as a Time, at least make sure to convert it to your configured time zone:
 
     1.day.from_now # => Fri, 03 Mar 2012 22:04:47 JST +09:00
-    Date.today.in_time_zone # => Fri, 02 Mar 2012 00:00:00 JST +09:00
+    Date.current.in_time_zone # => Fri, 02 Mar 2012 00:00:00 JST +09:00
 
 Never use:
 
@@ -88,22 +88,19 @@ There is [Zonebie](https://github.com/alindeman/zonebie), a gem that helps you d
 
     2.hours.ago # => Fri, 02 Mar 2012 20:04:47 JST +09:00
     1.day.from_now # => Fri, 03 Mar 2012 22:04:47 JST +09:00
-    Date.today.in_time_zone # => Fri, 02 Mar 2012 22:04:47 JST +09:00
-    Date.current # => Fri, 02 Mar
-    Time.zone.parse("2012-03-02 16:05:37") # => Fri, 02 Mar 2012 16:05:37 JST +09:00
-    Time.zone.now # => Fri, 02 Mar 2012 22:04:47 JST +09:00
-    Time.current # Same thing but shorter. (Thank you Lukas Sarnacki pointing this out.)
-    Time.zone.today # If you really can't have a Time or DateTime for some reason
+    Time.zone.parse("2012-03-02T16:05:37Z") # => Fri, 02 Mar 2012 16:05:37 JST +09:00
+    Time.current # => Fri, 02 Mar 2012 22:04:47 JST +09:00
     Time.current.utc.iso8601 # When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed)
     Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z").in_time_zone # If you can't use time.zone.parse
+    Date.current # => Tue, 18 Aug 2015 (If you really can't have a Time or DateTime for some reason)
+    Date.current.in_time_zone # => Tue, 18 Aug 2015 00:00:00 AFT +04:30 (If you have a date and want to make the best out of it)
 
 ### DON'Ts
 
     Time.now # => Returns system time and ignores your configured time zone.
     Time.parse("2012-03-02 16:05:37") # => Will assume time string given is in the system's time zone.
     Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z") # Same problem as with Time#parse.
-    Date.today # This could be yesterday or tomorrow depending on the machine's time zone.
-    Date.today.to_time # => # Still not the configured time zone.
+    Date.today # This could be yesterday or tomorrow depending on the machine's time zone, see https://github.com/ramhoj/time-zone-article/issues/1 for more info.
 
 ## Epilogue
 
