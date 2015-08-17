@@ -34,16 +34,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.around(:each, travel_to: /.+/) do |scenario|
-    travel_to = example.metadata[:travel_to]
-
-    if travel_to
-      Timecop.travel(travel_to) { scenario.run }
-    else
-      scenario.run
-    end
-  end
-
   config.around(:each, frozen: true) do |scenario|
     Timecop.freeze { scenario.run }
   end
