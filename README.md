@@ -86,21 +86,21 @@ There is [Zonebie](https://github.com/alindeman/zonebie), a gem that helps you d
 
 ### DOs
 
-    2.hours.ago # => Fri, 02 Mar 2012 20:04:47 JST +09:00
-    1.day.from_now # => Fri, 03 Mar 2012 22:04:47 JST +09:00
-    Time.zone.parse("2012-03-02T16:05:37Z") # => Fri, 02 Mar 2012 16:05:37 JST +09:00
-    Time.current # => Fri, 02 Mar 2012 22:04:47 JST +09:00
-    Time.current.utc.iso8601 # When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed)
-    Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z").in_time_zone # If you can't use time.zone.parse
-    Date.current # => Tue, 18 Aug 2015 (If you really can't have a Time or DateTime for some reason)
-    Date.current.in_time_zone # => Tue, 18 Aug 2015 00:00:00 AFT +04:30 (If you have a date and want to make the best out of it)
+    2.hours.ago # => Thu, 27 Aug 2015 14:20:13 AFT +04:30
+    1.day.from_now # => Fri, 28 Aug 2015 16:20:13 AFT +04:30
+    Time.zone.parse("2015-08-27T11:50:13Z") # => Thu, 27 Aug 2015 16:20:13 AFT +04:30
+    Time.current # => Thu, 27 Aug 2015 16:20:13 AFT +04:30
+    Time.current.utc.iso8601 # When supliyng an API (you can actually skip .zone here, but I find it better to always use it, than miss it when it's needed ("2015-08-27T11:50:13Z")
+    Time.strptime("2015-08-27T11:50:13Z", "%Y-%m-%dT%H:%M:%S%z").in_time_zone # If you can't use time.zone.parse (Thu, 27 Aug 2015 16:20:13 AFT +04:30)
+    Date.current # Tue, 18 Aug 2015 If you really can't have a Time or DateTime for some reason (Thu, 27 Aug 2015)
+    Date.current.in_time_zone # If you have a date and want to make the best out of it (Thu, 27 Aug 2015 00:00:00 AFT +04:30)
 
 ### DON'Ts
 
-    Time.now # => Returns system time and ignores your configured time zone.
-    Time.parse("2012-03-02 16:05:37") # => Will assume time string given is in the system's time zone.
-    Time.strptime(time_string, "%Y-%m-%dT%H:%M:%S%z") # Same problem as with Time#parse.
-    Date.today # This could be yesterday or tomorrow depending on the machine's time zone, see https://github.com/ramhoj/time-zone-article/issues/1 for more info.
+    Time.now # Returns system time and ignores your configured time zone. (2015-08-27 13:50:13 +0200)
+    Time.parse("2015-08-27T11:50:13Z") # Will assume time string given is in the system's time zone. (2015-08-27 11:50:13 UTC)
+    Time.strptime("2015-08-27T11:50:13Z", "%Y-%m-%dT%H:%M:%S%z") # Same problem as with Time#parse. (2015-08-27 11:50:13 UTC)
+    Date.today # This could be yesterday or tomorrow depending on the machine's time zone, see https://github.com/ramhoj/time-zone-article/issues/1 for more info. (Thu, 27 Aug 2015)
 
 ## Epilogue
 
