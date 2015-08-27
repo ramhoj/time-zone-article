@@ -111,9 +111,10 @@ I hope you've learned something from this post. I sure did while writing it! If 
 This article was first written in March 2012. Back then Rails 3.2 was the new hot and as you all know a lot happens in Rails-land in two and a half years and will continue to do so. I will do my best to keep the article accurate and up to date with the latest versions of Rails. If you spot anything that is reported deprecated or not working please let me know in the comment section below!
 
 * Article publish date: **2012-03-20**
-* Article last updated: **2014-11-04**
-* Last verified Rails version: **4.1.7**
-* Last verified Ruby version: **2.1.4p265**
+* Article last updated: **2015-08-27**
+* Last verified Rails version: **4.2.4**
+* Last verified Ruby version: **2.2.0p0 (49005)**
+* OS: **Mac OS X 10.10.4 (Yosemite)**
 
 There is a [git repository](https://github.com/ramhoj/time-zone-article) which you can clone:
 
