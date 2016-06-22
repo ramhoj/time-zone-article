@@ -66,15 +66,15 @@ Why there's no `strptime` method on `Time.zone` when there's a `parse` beats me.
 
 ## Working with multiple user time zones
 
-Many systems needs to support users entering and viewing time information in a variety of time zones. To achieve this you need to store each user's time zone (probably just one of the time zone string names found in `rake time:zones:all`). Then to actually use that time zone the most common pattern is to simply create a private method in your ActionController and run it as an around filter.
+Many systems needs to support users entering and viewing time information in a variety of time zones. To achieve this you need to store each user's time zone (probably just one of the time zone string names found in `rake time:zones:all`). Then to actually use that time zone the most common pattern is to simply create a private method in your ActionController and run it as an around action.
 
-    around_filter :user_time_zone, :if => :current_user
+    around_action :user_time_zone, if: :current_user
 
     def user_time_zone(&block)
       Time.use_zone(current_user.time_zone, &block)
     end
 
-This will do the same thing as `config.time_zone` but on a per request basis. I still recommend to change the default `config.time_zone` to a time zone that is a good default for your users. (Thank you Matt Bridges for pointing out the potential problems with using a before_filter instead of an around_filter.)
+This will do the same thing as `config.time_zone` but on a per request basis. I still recommend to change the default `config.time_zone` to a time zone that is a good default for your users. (Thank you Matt Bridges for pointing out the potential problems with using a before_filter instead of an around_action.)
 
 ## Testing
 
@@ -111,10 +111,10 @@ I hope you've learned something from this post. I sure did while writing it! If 
 This article was first written in March 2012. Back then Rails 3.2 was the new hot and as you all know a lot happens in Rails-land in two and a half years and will continue to do so. I will do my best to keep the article accurate and up to date with the latest versions of Rails. If you spot anything that is reported deprecated or not working please let me know in the comment section below!
 
 * Article publish date: **2012-03-20**
-* Article last updated: **2015-08-27**
-* Last verified Rails version: **4.2.4**
-* Last verified Ruby version: **2.2.0p0 (49005)**
-* OS: **Mac OS X 10.10.4 (Yosemite)**
+* Article last updated: **2016-06-22**
+* Last verified Rails version: **4.2.6**
+* Last verified Ruby version: **2.3.1p112 (54768)**
+* OS: **Mac OS X 10.11.4 (El Capitan)**
 
 There is a [git repository](https://github.com/ramhoj/time-zone-article) which you can clone:
 

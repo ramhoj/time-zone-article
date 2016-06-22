@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  around_filter :user_time_zone, only: :show, if: :current_user
+  around_action :user_time_zone, only: :show, if: :current_user
 
   def show
     render json: { time_zone: Time.zone }.to_json

@@ -14,7 +14,7 @@ describe UsersController, :truncation, frozen: "2014-03-15T23:31:11+05:45" do
     context "multiplie users accessing concurrently" do
       # Note: I have not been able to make this fail even when
       # setting and restoring Time.zone in the action instead of
-      # using Time.use_zone with a block as an around filter.
+      # using Time.use_zone with a block as an around action.
       it "gets the correct time zone" do
         time_zone_names = YAML.load(File.read(Rails.root.join("spec/fixtures/time_zones.yml").to_s))[:time_zones]
 
