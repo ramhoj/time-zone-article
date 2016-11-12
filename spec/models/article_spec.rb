@@ -44,21 +44,39 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
   end
 
   describe ActiveSupport::TimeZone do
-    describe "#parse" do
-      it "returns the time that the string represents in Kabul time" do
-        expect(Time.zone.parse("2014-03-16T23:32:11+06:00").iso8601).to eq("2014-03-16T22:02:11+04:30")
+    context "time zone is Kabul" do
+      describe "#parse" do
+        it "returns the time that the string represents in Kabul time" do
+          expect(Time.zone.parse("2014-03-16T23:32:11+06:00").iso8601).to eq("2014-03-16T22:02:11+04:30")
+        end
+      end
+
+      describe "#now" do
+        it "returns what the time is now in the configured time zone" do
+          expect(Time.zone.now.iso8601).to eq("2014-03-15T22:16:11+04:30")
+        end
+      end
+
+      describe "#today" do
+        it "returns what the date is now in the configured time zone" do
+          expect(Time.zone.today.iso8601).to eq("2014-03-15")
+        end
       end
     end
 
-    describe "#now" do
-      it "returns what the time is now in the configured time zone" do
-        expect(Time.zone.now.iso8601).to eq("2014-03-15T22:16:11+04:30")
+    context "time zone is Samoa" do
+      before do
+        Time.zone = "Pacific/Apia"
       end
-    end
 
-    describe "#today" do
-      it "returns what the date is now in the configured time zone" do
-        expect(Time.zone.today.iso8601).to eq("2014-03-15")
+      describe "data source" do
+        it "returns the correct utc_offset for Samoa" do
+          expect(Time.zone.utc_offset/3600).to eq 13
+        end
+      end
+
+      after do
+        Time.zone = "Kabul"
       end
     end
   end

@@ -13,13 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20141104131130) do
 
-  create_table "articles", force: true do |t|
+  create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "time_zone",  default: "UTC", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
