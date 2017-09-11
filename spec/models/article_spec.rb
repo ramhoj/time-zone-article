@@ -24,7 +24,7 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
     describe "#created_at" do
       let!(:article) { Article.create! }
 
-      it "retuns the time the article was created in Kabul time" do
+      it "returns the time the article was created in Kabul time" do
         expect(article.created_at.iso8601).to eq("2014-03-15T22:16:11+04:30")
       end
 
@@ -33,7 +33,7 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
       end
 
       it "is stored as UTC" do
-        expect(Article.find(article.id).created_at_before_type_cast).to eq("2014-03-15 17:46:11.000000")
+        expect(Article.find(article.id).created_at_before_type_cast).to eq("2014-03-15 17:46:11")
       end
 
       it "can be updated with any time zone time" do
