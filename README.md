@@ -76,6 +76,10 @@ Many systems needs to support users entering and viewing time information in a v
 
 This will do the same thing as `config.time_zone` but on a per request basis. I still recommend to change the default `config.time_zone` to a time zone that is a good default for your users. (Thank you Matt Bridges for pointing out the potential problems with using a before_filter instead of an around_action.)
 
+## Using correct time zone information
+
+[lazylester](https://github.com/lazylester) informed me that while working on a project in Samoa he discovered that MacOS' (last tested on 10.12.6) default database of time zone offsets is wrong. To solve this simply add `gem "tzinfo-data"` to your Gemfile.
+
 ## Testing
 
 All the above is something that your tests should catch for you. The problem is that you as the user and your computer as the development server happen to reside in the same time zone. This is rarely the case once you push things to production.
