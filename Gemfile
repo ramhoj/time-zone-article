@@ -6,6 +6,7 @@ gem "rails"
 gem "sqlite3"
 gem "pry-rails"
 gem "pry-doc"
+gem "tzinfo-data"
 
 group :development, :test do
   gem "rspec-rails"
