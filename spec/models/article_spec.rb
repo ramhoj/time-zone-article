@@ -65,19 +65,15 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
     end
 
     context "time zone is Samoa" do
-      before do
-        Time.zone = "Pacific/Apia"
-      end
+      before { Time.zone = "Pacific/Apia" }
 
       describe "data source" do
         it "returns the correct utc_offset for Samoa" do
-          expect(Time.zone.utc_offset/3600).to eq 13
+          expect(Time.zone.utc_offset / 3600).to eq(13)
         end
       end
 
-      after do
-        Time.zone = "Kabul"
-      end
+      after { Time.zone = "Kabul" }
     end
   end
 
