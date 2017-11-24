@@ -116,9 +116,9 @@ This article was first written in March 2012. Back then Rails 3.2 was the new ho
 
 * Article publish date: **2012-03-20**
 * Article last updated: **2016-06-22**
-* Last verified Rails version: **4.2.6**
-* Last verified Ruby version: **2.3.1p112 (54768)**
-* OS: **Mac OS X 10.11.4 (El Capitan)**
+* Last verified Rails version: **5.1.4**
+* Last verified Ruby version: **2.4.1p111**
+* OS: **Mac OS X 10.11.4 (El Capitan), Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-63-generic x86_64)**
 
 There is a [git repository](https://github.com/ramhoj/time-zone-article) which you can clone:
 
