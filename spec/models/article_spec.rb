@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # The goal with this test suite is not to have test coverage for every edge case in all Ruby and ActiveSupport's
 # methods but rahter verify that the examples in the article are still up-to-date. The below specification could
@@ -37,7 +39,7 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
       end
 
       it "can be updated with any time zone time" do
-        article.update_attributes!(created_at: "2014-03-16T23:32:11+06:00")
+        article.update!(created_at: "2014-03-16T23:32:11+06:00")
         expect(Article.find(article.id).created_at.iso8601).to eq("2014-03-16T22:02:11+04:30")
       end
     end
@@ -67,13 +69,13 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
     context "time zone is Samoa" do
       before { Time.zone = "Pacific/Apia" }
 
+      after { Time.zone = "Kabul" }
+
       describe "data source" do
         it "returns the correct utc_offset for Samoa" do
           expect(Time.zone.utc_offset / 3600).to eq(13)
         end
       end
-
-      after { Time.zone = "Kabul" }
     end
   end
 
