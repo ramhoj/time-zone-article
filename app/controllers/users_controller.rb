@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   around_action :user_time_zone, only: :show, if: :current_user
 
