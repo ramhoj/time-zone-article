@@ -22,7 +22,7 @@ iso_string = Time.current.utc.iso8601
     ["Date.today", "This could be yesterday or tomorrow depending on the machine's time zone, see https://github.com/ramhoj/time-zone-article/issues/1 for more info."]
   ]
 ].each_with_index do |list, index|
-  if index == 0
+  if index.zero?
     puts "\n### DOs\n\n"
   else
     puts "\n### DON'Ts\n\n"
@@ -30,9 +30,9 @@ iso_string = Time.current.utc.iso8601
 
   list.each do |item|
     if item[1]
-      puts "\s" * 4 + item[0] + " # " + item[1].to_s + %Q{ (#{eval(item[0]).inspect})}
+      puts "\s" * 4 + item[0] + " # " + item[1].to_s + %Q{ (#{eval(item[0]).inspect})} # rubocop:disable Security/Eval
     else
-      puts "\s" * 4 + item[0] + " # => " + eval(item[0]).inspect.to_s
+      puts "\s" * 4 + item[0] + " # => " + eval(item[0]).inspect.to_s # rubocop:disable Security/Eval
     end
   end
 end

@@ -3,7 +3,7 @@
 
 begin
   load File.expand_path("spring", __dir__)
-rescue LoadError
+rescue LoadError # rubocop:disable Lint/HandleExceptions
 end
 require_relative "../config/boot"
 require "rake"

@@ -46,7 +46,7 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
   end
 
   describe ActiveSupport::TimeZone do
-    context "time zone is Kabul" do
+    context "when time zone is Kabul" do
       describe "#parse" do
         it "returns the time that the string represents in Kabul time" do
           expect(Time.zone.parse("2014-03-16T23:32:11+06:00").iso8601).to eq("2014-03-16T22:02:11+04:30")
@@ -66,7 +66,7 @@ describe Article, frozen: "2014-03-15T23:31:11+05:45" do
       end
     end
 
-    context "time zone is Samoa" do
+    context "when time zone is Samoa" do
       before { Time.zone = "Pacific/Apia" }
 
       after { Time.zone = "Kabul" }
