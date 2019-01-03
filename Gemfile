@@ -12,4 +12,6 @@ group :development, :test do
   gem "rspec-rails"
   gem "timecop"
   gem "database_cleaner"
+  gem "rubocop", "= 0.62.0"
+  gem "rubocop-rspec"
 end
