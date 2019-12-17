@@ -21,38 +21,9 @@ Security/Eval:
 
 # -- Performance
 
-Performance/StringReplacement:
-  Reference: "https://github.com/JuanitoFatas/fast-ruby#stringgsub-vs-stringtr-code'"
-  Enabled: true
-
-Performance/ReverseEach:
-  Description: "Use `reverse_each` instead of `reverse.each`."
-  Reference: "https://github.com/JuanitoFatas/fast-ruby#enumerablereverseeach-vs-enumerablereverse_each-code"
-  Enabled: true
-
 Performance/Sample:
   Description: "Use `sample` instead of `shuffle.first`, `shuffle.last`, and `shuffle[Fixnum]`."
   Reference: "https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code"
-  Enabled: true
-
-Performance/Size:
-  Description: "Use `size` instead of `count` for counting the number of elements in `Array` and `Hash`."
-  Reference: "https://github.com/JuanitoFatas/fast-ruby#arraycount-vs-arraysize-code"
-  Enabled: true
-
-Performance/FlatMap:
-  Description: "Use `Enumerable#flat_map` instead of `Enumerable#map…Array#flatten` or `Enumberable#collect…Array#flatten`."
-  Reference: "https://github.com/JuanitoFatas/fast-ruby#enumerablemaparrayflatten-vs-enumerableflat_map-code"
-  Enabled: true
-  EnabledForFlattenWithoutParams: false
-
-Performance/Detect:
-  Description: "Use `detect` instead of `select.first`, `find_all.first`, `select.last`, and `find_all.last`."
-  Reference: "https://github.com/JuanitoFatas/fast-ruby#enumerabledetect-vs-enumerableselectfirst-code"
-  Enabled: true
-
-Performance/Count:
-  Description: "Use `count` instead of `select|reject...size|count|length`"
   Enabled: true
 
 # -- Lint
@@ -263,7 +234,7 @@ Layout/ConditionPosition:
 Layout/DefEndAlignment:
   Enabled: true
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: false
   # Or the following isn't allowed
   # foo([
@@ -302,7 +273,7 @@ Layout/FirstMethodArgumentLineBreak:
 Layout/FirstMethodParameterLineBreak:
   Enabled: true
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
 
 Layout/DotPosition:
@@ -604,55 +575,6 @@ Style/MutableConstant:
 
 Style/Next:
   Enabled: false
-
-# -- Rails
-
-Rails/Date:
-  EnforcedStyle: flexible
-  # Flexible allows us to use the shorthand `Date.current` instead of `Time.zone.today`,
-  # just as we would use `Time.current` over `Time.zone.now`.
-
-Rails/TimeZone:
-  Description: "bad: `Time.now, Time.parse` ok: `Time.zone, Time.current, Time.in_time_zone`"
-  EnforcedStyle: flexible
-
-Rails/NotNullColumn:
-  Enabled: false # see https://github.com/bbatsov/rubocop/issues/3963
-
-Rails/FindBy:
-  Description: "Prefer find_by(name: name) over find_by_name(name)"
-
-Rails/FindEach:
-  Description: "Prefer all.find_each over all.find for batch queries."
-
-Rails/HasAndBelongsToMany:
-  Description: "Prefer has_many :through to has_and_belongs_to_many."
-
-Rails/RequestReferer:
-  Description: "bad: `request.referrer` ok: `request.referer`."
-  EnforcedStyle: referer
-
-Rails/OutputSafety:
-  Description: "bad: `html_safe, raw` ok: `safe_join`."
-  Enabled: false
-
-Rails/Output:
-  Description: "Checks for calls to puts, print, etc."
-  Exclude:
-    - lib/tasks/*
-
-Rails/SkipsModelValidations:
-  Description: "bad: `update_attribute` ok: `update_attributes`."
-  Enabled: true
-  Exclude:
-    - spec/**/*_spec.rb # Sometimes needed to setup invalid stats for tests.
-
-Rails/DynamicFindBy:
-  Enabled: true
-
-Rails/Exit:
-  Exclude:
-    - lib/tasks/*
 
 Bundler/OrderedGems:
   Enabled: false # or we can make groups that makes sense

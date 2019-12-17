@@ -1,7 +1,7 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.6.0
+  - 2.6.5
 env:
   global:
     - CC_TEST_REPORTER_ID=39a3f6b49be83fb2f18fb7c64cbda381d46fe9ad97958772dcdac111e3f0ca61

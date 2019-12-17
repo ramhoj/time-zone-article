@@ -116,8 +116,8 @@ This article was first written in March 2012. Back then Rails 3.2 was the new ho
 
 * Article publish date: **2012-03-20**
 * Article last updated: **2016-06-22**
-* Last verified Rails version: **5.1.5**
-* Last verified Ruby version: **2.6.0**
+* Last verified Rails version: **6.0.2**
+* Last verified Ruby version: **2.6.5**
 * OS: **Mac OS X 10.13.6 (Hight Sierra), Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-63-generic x86_64)**
 
 There is a [git repository](https://github.com/ramhoj/time-zone-article) which you can clone:
@@ -126,7 +126,7 @@ There is a [git repository](https://github.com/ramhoj/time-zone-article) which y
     cd time-zone-article
     bundle install
     rake db:create:all db:migrate db:test:prepare
-    rspec spec/
+    bundle exec rspec spec/
 
 The Rails application is running on the version defined above and has been verified to work under the described Ruby version above.
 If you want to make sure things are working in the version of Rails or Ruby that you're using please fork the repository and make
