@@ -168,7 +168,7 @@ GEM
     thor (1.0.0)
     thread_safe (0.3.6)
     timecop (0.9.1)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     tzinfo-data (1.2019.3)
       tzinfo (>= 1.0.0)
